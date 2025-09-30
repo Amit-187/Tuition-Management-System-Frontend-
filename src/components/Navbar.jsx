@@ -1,14 +1,18 @@
 import React, { useState, useEffect } from 'react'
 import { FaUser, FaChevronDown, FaBars, FaTimes, FaMoon, FaSun } from 'react-icons/fa'
 import { Link } from 'react-router-dom';
+import { getUserRole } from "../utils/auth";  // adjust path based on file location
+
 
 function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [darkMode, setDarkMode] = useState(false);
   const [isAnimating, setIsAnimating] = useState(false);
+  const role = getUserRole();
 
   // Initialize theme based on user preference or system preference
   useEffect(() => {
+    console.log(role)
     // Check if user has a saved preference
     const savedTheme = localStorage.getItem('theme');
     if (savedTheme === 'dark') {
@@ -46,12 +50,12 @@ function Navbar() {
       setDarkMode(!darkMode);
       setIsAnimating(false);
     }, 300);
-    
- 
+
+
   };
   const handleLogout = () => {
     localStorage.removeItem("authToken"); // clear token
-    window.location.href="/"; // redirect with react-router
+    window.location.href = "/"; // redirect with react-router
   };
   return (
     <nav className="sticky top-0 z-50 bg-white dark:bg-gray-900 bg-opacity-80 dark:bg-opacity-90 backdrop-filter backdrop-blur-lg border-b border-gray-200 dark:border-gray-700 shadow-sm transition-colors duration-300">
@@ -105,6 +109,12 @@ function Navbar() {
               Contact
               <span className="absolute bottom-1 left-0 w-full h-0.5 bg-gradient-to-r from-indigo-500 to-purple-500 transform scale-x-0 origin-left transition-transform duration-300 group-hover:scale-x-100"></span>
             </Link>
+             {role == "Admin" && (
+        <Link to="/" className="text-gray-700 dark:text-gray-300 px-4 py-2 rounded-lg text-sm font-medium transition duration-300 ease-in-out relative group hover:text-indigo-600 dark:hover:text-indigo-400 hover:bg-indigo-50 dark:hover:bg-indigo-900/20">
+              Admin
+              <span className="absolute bottom-1 left-0 w-full h-0.5 bg-gradient-to-r from-indigo-500 to-purple-500 transform scale-x-0 origin-left transition-transform duration-300 group-hover:scale-x-100"></span>
+            </Link>  // ✅ Only visible for Admin
+      )}
           </div>
 
           {/* Right side - Theme toggle, Login button and Profile icon */}

@@ -54,7 +54,8 @@ const Login = () => {
  
       const loginData = {
       studentUserName,
-      studentPassword
+      studentPassword,
+      role : "string"
     };
     console.log(loginData)
       setIsLoading(false);
