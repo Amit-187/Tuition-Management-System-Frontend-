@@ -14,7 +14,7 @@ function Navbar() {
   useEffect(() => {
     console.log(role)
     // Check if user has a saved preference
-    const savedTheme = localStorage.getItem('theme');
+    const savedTheme = sessionStorage.getItem('theme');
     if (savedTheme === 'dark') {
       setDarkMode(true);
       document.documentElement.classList.add('dark');
@@ -37,12 +37,12 @@ function Navbar() {
     if (darkMode) {
       // Switch to light mode
       document.documentElement.classList.remove('dark');
-      localStorage.setItem('theme', 'light');
+      sessionStorage.setItem('theme', 'light');
       document.documentElement.style.colorScheme = 'light';
     } else {
       // Switch to dark mode
       document.documentElement.classList.add('dark');
-      localStorage.setItem('theme', 'dark');
+      sessionStorage.setItem('theme', 'dark');
       document.documentElement.style.colorScheme = 'dark';
     }
 
@@ -54,7 +54,7 @@ function Navbar() {
 
   };
   const handleLogout = () => {
-    localStorage.removeItem("authToken"); // clear token
+    sessionStorage.removeItem("authToken"); // clear token
     window.location.href = "/"; // redirect with react-router
   };
   return (
@@ -183,7 +183,7 @@ function Navbar() {
 
             {/* Get Started Button with Enhanced Effects */}
 
-            {localStorage.getItem("authToken") ? (
+            {sessionStorage.getItem("authToken") ? (
               <Link to="/logout">
                 <button onClick={handleLogout} className="bg-gradient-to-r from-gray-800 to-gray-400 dark:from-black dark:to-gray-700 text-white px-6 py-2.5 rounded-lg text-sm font-semibold transition duration-300 ease-in-out transform hover:shadow-xl hover:scale-105 relative overflow-hidden group shadow-lg">
                   <span className="relative z-10 flex items-center">

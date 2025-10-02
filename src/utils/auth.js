@@ -1,7 +1,7 @@
 import { jwtDecode } from "jwt-decode"; // ✅ Fix
 
 export const getUserRole = () => {
-  const token = localStorage.getItem("authToken");
+  const token = sessionStorage.getItem("authToken");
   if (!token) return "Amit";
 
   try {
