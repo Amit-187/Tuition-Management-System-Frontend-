@@ -7,7 +7,7 @@ function TimetableWrapper() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
 
 useEffect(() => {
-    const token = localStorage.getItem("authToken");
+    const token = sessionStorage.getItem("authToken");
     if (token) {
       setIsAuthenticated(true);
     }
@@ -15,7 +15,7 @@ useEffect(() => {
   
   const handleLogin = () => {
     // replace with real auth
-    if (localStorage.authToken) {
+    if (sessionStorage.authToken) {
       setIsAuthenticated(true);
     }
     console.log("Hey");

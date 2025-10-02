@@ -62,7 +62,7 @@ const Login = () => {
     
 
      try {
-      const response = await fetch('https://localhost:7168/api/Login', { // replace with your API URL
+      const response = await fetch('https://localhost:7087/api/Login', { // replace with your API URL
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -73,9 +73,9 @@ const Login = () => {
       const data = await response.json();
 
       if (response.ok) {
-        // Save token to localStorage or state
-        localStorage.setItem('authToken', data.authToken);
-        console.log('Token:', localStorage.authToken);
+        // Save token to sessionStorage or state
+        sessionStorage.setItem('authToken', data.authToken);
+        console.log('Token:', sessionStorage.authToken);
         window.location.href = "/";
         setMessage(data.message);
         // Redirect or show dashboard
