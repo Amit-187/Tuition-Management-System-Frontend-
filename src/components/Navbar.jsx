@@ -14,7 +14,7 @@ function Navbar() {
   useEffect(() => {
     console.log(role)
     // Check if user has a saved preference
-    const savedTheme = sessionStorage.getItem('theme');
+    const savedTheme = localStorage.getItem('theme');
     if (savedTheme === 'dark') {
       setDarkMode(true);
       document.documentElement.classList.add('dark');
@@ -37,12 +37,12 @@ function Navbar() {
     if (darkMode) {
       // Switch to light mode
       document.documentElement.classList.remove('dark');
-      sessionStorage.setItem('theme', 'light');
+      localStorage.setItem('theme', 'light');
       document.documentElement.style.colorScheme = 'light';
     } else {
       // Switch to dark mode
       document.documentElement.classList.add('dark');
-      sessionStorage.setItem('theme', 'dark');
+      localStorage.setItem('theme', 'dark');
       document.documentElement.style.colorScheme = 'dark';
     }
 
